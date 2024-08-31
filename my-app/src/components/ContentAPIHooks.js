@@ -8,6 +8,7 @@ function ContentAPIHooks() {
     const [posts, setPosts] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [filteredPosts, setFilteredPosts] = useState([]);
+    const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
       fetchImages();
@@ -29,11 +30,14 @@ function ContentAPIHooks() {
         return post.type.toLowerCase().includes(inputText)
     });
     setFilteredPosts(filteredPosts);
+    setIsActive(false);
     }
 
   return (
     <div>
+        {isActive &&
         <input type='text' id="search" name='search' placeholder='Artwork type: photo' onChange={handelChange} />
+        }
         {
         filteredPosts.map(post => 
         <form key={post.id}>
